@@ -6,16 +6,15 @@ const app = express();
 // const host = 'localhost';
 const port = 3000;
 
+app.use(express.json());
 app.get("/", (req, res) => {
     Repl();
   res.send("hello");
 });
 
 app.post("/repl", (req, res) => {
-    //not working yet (2 lines below)
-    // console.log(req.body);
-    // const inputString = req.body.inputString;
-    const inputString = "const greeting = 'hello'; const name = 'john'";
+    const inputString = req.body.inputString;
+    // input in form {  "inputString": string }
     extractVariables(inputString);
     res.send('received');
 //   res.send("hello");
